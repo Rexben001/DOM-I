@@ -42,12 +42,35 @@ let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
 
 const navItems = document.querySelectorAll('nav a');
-console.log(navItems);
 
 const siteContentIterate = Object.values(siteContent.nav);
-console.log(siteContentIterate);
 
 for (let i = 0; i < navItems.length; i++)
 {
   navItems[i].innerHTML = siteContentIterate[i];
+}
+
+const ctaText = document.querySelector('.cta-text h1');
+ctaText.textContent = siteContent.cta.h1;
+
+const ctaButton = document.querySelector('.cta-text button');
+ctaButton.textContent = siteContent.cta.button;
+
+const headerImage = document.getElementById('cta-img');
+headerImage.src = '../img/header-img.png';
+
+const topContent = document.querySelectorAll('.top-content .text-content');
+
+const siteContentObj = siteContent["main-content"];
+ 
+const textContentFeatures = [siteContentObj["features-h4"], siteContentObj["features-content"]];
+const textContentAbout = [siteContentObj["about-h4"], siteContentObj["about-content"]];
+for (let i = 0; i < textContentFeatures.length; i++)
+{
+  topContent[0].children[i].textContent = textContentFeatures[i]
+}
+
+for (let i = 0; i < textContentAbout.length; i++)
+{
+  topContent[1].children[i].textContent = textContentAbout[i]
 }
