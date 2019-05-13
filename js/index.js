@@ -54,8 +54,23 @@ const siteContentIterate = Object.values(siteContent.nav);
 
 for (let i = 0; i < navItems.length; i++)
 {
-  navItems[i].innerHTML = siteContentIterate[i];
+  navItems[i].textContent = siteContentIterate[i];
+  navItems[i].classList.add('green');
 }
+const nav = document.querySelector('nav');
+
+const anchorHome = document.createElement('a');
+anchorHome.setAttribute('class', 'green');
+anchorHome.textContent = 'Home';
+anchorHome.setAttribute('href', '#');
+nav.prepend(anchorHome);
+
+const anchorSiteMap = document.createElement('a');
+anchorSiteMap.setAttribute('class', 'green');
+anchorSiteMap.textContent = 'Sitemap';
+anchorSiteMap.setAttribute('href', '#');
+nav.appendChild(anchorSiteMap);
+
 
 const ctaText = document.querySelector('.cta-text h1');
 const splittedValue = (siteContent.cta.h1).split(' ');
