@@ -37,6 +37,13 @@ const siteContent = {
   },
 };
 
+const IteratorFunc = (selector, pos, obj) => {
+  for (let i = 0; i < obj.length; i++)
+{
+  selector[pos].children[i].textContent = obj[i];
+}
+}
+
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
@@ -51,26 +58,44 @@ for (let i = 0; i < navItems.length; i++)
 }
 
 const ctaText = document.querySelector('.cta-text h1');
-ctaText.textContent = siteContent.cta.h1;
+const splittedValue = (siteContent.cta.h1).split(' ');
+
+const DOMValue = `${splittedValue[0]} <br /> ${splittedValue[1]} <br /> ${splittedValue[2]}`;
+ctaText.innerHTML = DOMValue;
 
 const ctaButton = document.querySelector('.cta-text button');
 ctaButton.textContent = siteContent.cta.button;
 
 const headerImage = document.getElementById('cta-img');
-headerImage.src = '../img/header-img.png';
+headerImage.src = siteContent.cta["img-src"];
 
-const topContent = document.querySelectorAll('.top-content .text-content');
+const topContentSelector = document.querySelectorAll('.top-content .text-content');
 
-const siteContentObj = siteContent["main-content"];
+
+const mainObjects = Object.values(siteContent["main-content"]);
+
  
-const textContentFeatures = [siteContentObj["features-h4"], siteContentObj["features-content"]];
-const textContentAbout = [siteContentObj["about-h4"], siteContentObj["about-content"]];
-for (let i = 0; i < textContentFeatures.length; i++)
-{
-  topContent[0].children[i].textContent = textContentFeatures[i]
-}
+const textContentFeatures = [mainObjects[0], mainObjects[1]];
+IteratorFunc(topContentSelector, 0, textContentFeatures);
 
-for (let i = 0; i < textContentAbout.length; i++)
-{
-  topContent[1].children[i].textContent = textContentAbout[i]
-}
+const textContentAbout = [mainObjects[2], mainObjects[3]];
+IteratorFunc(topContentSelector, 1, textContentAbout);
+
+const middleImg = document.getElementById('middle-img');
+middleImg.src = mainObjects[4];
+
+
+const bottomContentSelector = document.querySelectorAll('.bottom-content .text-content');
+
+const bottomContentServices = [mainObjects[5], mainObjects[6]];
+IteratorFunc(bottomContentSelector, 0, bottomContentServices);
+
+const bottomContentProducts = [mainObjects[7], mainObjects[8]];
+IteratorFunc(bottomContentSelector, 1, bottomContentProducts);
+
+const bottomContentVision = [mainObjects[9], mainObjects[10]];
+IteratorFunc(bottomContentSelector, 2, bottomContentVision);
+
+const contactSelector = document.querySelectorAll('.contact');
+const contactObj = Object.values(siteContent.contact);
+IteratorFunc(contactSelector, 0, contactObj);
