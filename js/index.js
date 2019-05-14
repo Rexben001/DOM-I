@@ -114,3 +114,7 @@ IteratorFunc(bottomContentSelector, 2, bottomContentVision);
 const contactSelector = document.querySelectorAll('.contact');
 const contactObj = Object.values(siteContent.contact);
 IteratorFunc(contactSelector, 0, contactObj);
+
+
+const footer = document.querySelector('footer p');
+footer.textContent = siteContent.footer.copyright;
