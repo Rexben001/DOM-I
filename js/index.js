@@ -37,6 +37,84 @@ const siteContent = {
   },
 };
 
+const IteratorFunc = (selector, pos, obj) => {
+  for (let i = 0; i < obj.length; i++)
+{
+  selector[pos].children[i].textContent = obj[i];
+}
+}
+
 // Example: Update the img src for the logo
 let logo = document.getElementById("logo-img");
 logo.setAttribute('src', siteContent["nav"]["img-src"])
+
+const navItems = document.querySelectorAll('nav a');
+
+const siteContentIterate = Object.values(siteContent.nav);
+
+for (let i = 0; i < navItems.length; i++)
+{
+  navItems[i].textContent = siteContentIterate[i];
+  navItems[i].classList.add('green');
+}
+const nav = document.querySelector('nav');
+
+const anchorHome = document.createElement('a');
+anchorHome.setAttribute('class', 'green');
+anchorHome.textContent = 'Home';
+anchorHome.setAttribute('href', '#');
+nav.prepend(anchorHome);
+
+const anchorSiteMap = document.createElement('a');
+anchorSiteMap.setAttribute('class', 'green');
+anchorSiteMap.textContent = 'Sitemap';
+anchorSiteMap.setAttribute('href', '#');
+nav.appendChild(anchorSiteMap);
+
+
+const ctaText = document.querySelector('.cta-text h1');
+const splittedValue = (siteContent.cta.h1).split(' ');
+
+const DOMValue = `${splittedValue[0]} <br /> ${splittedValue[1]} <br /> ${splittedValue[2]}`;
+ctaText.innerHTML = DOMValue;
+
+const ctaButton = document.querySelector('.cta-text button');
+ctaButton.textContent = siteContent.cta.button;
+
+const headerImage = document.getElementById('cta-img');
+headerImage.src = siteContent.cta["img-src"];
+
+const topContentSelector = document.querySelectorAll('.top-content .text-content');
+
+
+const mainObjects = Object.values(siteContent["main-content"]);
+
+ 
+const textContentFeatures = [mainObjects[0], mainObjects[1]];
+IteratorFunc(topContentSelector, 0, textContentFeatures);
+
+const textContentAbout = [mainObjects[2], mainObjects[3]];
+IteratorFunc(topContentSelector, 1, textContentAbout);
+
+const middleImg = document.getElementById('middle-img');
+middleImg.src = mainObjects[4];
+
+
+const bottomContentSelector = document.querySelectorAll('.bottom-content .text-content');
+
+const bottomContentServices = [mainObjects[5], mainObjects[6]];
+IteratorFunc(bottomContentSelector, 0, bottomContentServices);
+
+const bottomContentProducts = [mainObjects[7], mainObjects[8]];
+IteratorFunc(bottomContentSelector, 1, bottomContentProducts);
+
+const bottomContentVision = [mainObjects[9], mainObjects[10]];
+IteratorFunc(bottomContentSelector, 2, bottomContentVision);
+
+const contactSelector = document.querySelectorAll('.contact');
+const contactObj = Object.values(siteContent.contact);
+IteratorFunc(contactSelector, 0, contactObj);
+
+
+const footer = document.querySelector('footer p');
+footer.textContent = siteContent.footer.copyright;
